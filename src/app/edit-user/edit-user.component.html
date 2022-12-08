@@ -1,0 +1,69 @@
+<p>edit-user works!</p>
+
+<div class="container-fluid">
+    <h2>Registration form</h2>
+  <form  class="justify-contenet-between w-25" #myForm="ngForm" (ngSubmit)="onsubmit(myForm.value)">
+    <div class="mt-2">
+      <label>Frist Name</label>
+      <input type="text" placeholder="enter your frist name" class="form-control" name="firstn" ngModel>
+    </div>
+    <div class="mt-2">
+      <label>Last Name</label>
+      <input type="text" placeholder="enter your last name" class="form-control" name="Lastname" ngModel>
+    </div>
+  
+    <div>
+      <label class="form-lable">Student Roll No</label>
+      <input type="text" placeholder="Enter your Roll number" name="sid" ngModel class="form-control">
+    </div>
+
+    <div>
+      <label class="form-lable">Student Email Id</label>
+      <input type="email" placeholder="Enter your Roll number" name="semail" ngModel class="form-control">
+    </div>
+<!--
+    <div>
+      <label class="form-lable">Collage Name</label>
+      <input type="text" placeholder="Enter your collage name" name="cname" ngModel class="form-control">
+    </div>
+  
+    <div>
+      <label class="form-lable">Cource Name</label>
+      <input type="text" placeholder="Enter your cource name" name="sourse" class="form-control" ngModel required>
+      <div>
+        <span>Cource Name is Mandetory</span>
+      </div>
+    </div> -->
+    <div>
+        <button (click)="updatedata(myForm.value)" class="btn btn-primary mt-1">upadte</button>
+    </div>
+  </form>
+  </div>
+
+
+
+  
+  <!--api table showing data-->
+  <h3>Student Details</h3>
+ <table class="container-fluid ms-1">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>username</th>
+      <th>Email</th>
+      <th>Delete</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let userdata of user">
+    <tr>
+      <td>{{userdata.id}}</td>
+      <td>{{userdata.name}}</td>
+      <td>{{userdata.username}}</td>
+      <td>{{userdata.email}}</td>
+      <td><button class="btn" style="background-color: red;">Delete</button></td>
+      <td><button class="btn btn-primary" (click)="editclick(userdata.id)">Edit</button></td>
+    </tr>
+  </tbody>
+ </table>

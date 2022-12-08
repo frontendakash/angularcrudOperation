@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <h2>Registration form</h2>
+<form  class="justify-contenet-between w-25" #myForm="ngForm" (ngSubmit)="onsubmit(myForm.value)">
+  <div class="mt-2">
+    <label>Frist Name</label>
+    <input type="text" placeholder="enter your frist name" class="form-control" name="firstname" ngModel>
+  </div>
+  <div class="mt-2">
+    <label>Last Name</label>
+    <input type="text" placeholder="enter your last name" class="form-control" name="Lastname" ngModel>
+  </div>
+
+  <div>
+    <label class="form-lable">Student Roll No</label>
+    <input type="text" placeholder="Enter your Roll number" name="srno" ngModel class="form-control">
+  </div>
+
+  <div>
+    <label class="form-lable">Collage Name</label>
+    <input type="text" placeholder="Enter your collage name" name="cname" ngModel class="form-control">
+  </div>
+
+  <div>
+    <label class="form-lable">Cource Name</label>
+    <input type="text" placeholder="Enter your cource name" name="sourse" class="form-control" ngModel required>
+    <div>
+      <span>Cource Name is Mandetory</span>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-primary mt-2">Submit</button>
+    <button class="btn btn-link" (click)="restefomr(myForm)">Resent Form</button>
+  </div>
+</form>
+</div>
+<!--edit-usercompoment selector-->
+<button (click)="getdatafrommongo()">check data</button>
+<app-edit-user></app-edit-user>
+
+<!-- <div *ngFor="var item of user">
+  <p>item.firstname</p>
+</div> -->
+
+<!-- <div class="mt-2">
+  <table border="1">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>id</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of user">
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.username}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary mt-3" (click)="getdatafromapi()">fecth data</button>
+</div> -->
