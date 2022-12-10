@@ -9,48 +9,72 @@ import { UserServicesService } from '../Services/user-services.service';
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private useredit: UserServicesService) { }
-
-
-
-  //this all implementation for put method 
+  constructor(private api: UserServicesService) { }
 
   user: any = [];
 
   ngOnInit(): void {
-    this.useredit.getdata().subscribe((data) => {
+    this.api.getdata().subscribe((data) => {
       //console.log(data);
       this.user = data;
     })
   }
+
   onsubmit(data: NgForm) {
-    console.log(data)
+    // console.log(data)
   }
 
+
+
+// post method implementaion
+  PostData(data: NgForm) {
+    this.api.postdata(data);
+    this.ngOnInit();
+    this.form.reset();
+  }
+
+
+
   userdata: any;
+  updateuserid: any;
+  @ViewChild('myForm') form: NgForm;
+
+
+
+  editclick(id: any) {
+    this.updateuserid = id;
+    // var formdata = document.getElementById("formshow");
+    // formdata.style.display = "block";
+
+    let uid = this.user.find((p) => { return p.id === id });
+    this.form.setValue({
+      firstn: uid.firstn,
+      Lastname: uid.Lastname,
+      sid: uid.sid,
+      semail: uid.semail
+    });
+  }
 
   // put method implementaion and subscribed
-  updatedata(form: NgForm) {
-    this.useredit.updateuser(form).subscribe((data) => {
-      console.log(data)
+  updatedata() {
+    //const jsoindata=JSON.stringify(formdata);
+    console.log(this.form.value);
+    this.api.updateuser(this.form.value, this.updateuserid).subscribe((data) => {
+      console.log("data updated" + this.form)
     }, (err) => {
-      console.log(err)
+      console.log("error",err)
     })
   }
 
-  @ViewChild('myForm') form: NgForm;
-
-  editclick(id: string) {
-    //console.log(id)
-    // console.log(uid.id);
-    // console.log(this.form)
-    let uid = this.user.find((p) => { return p.id === id })
-    this.form.setValue({
-      firstn: uid.name,
-      Lastname: uid.username,
-      sid: uid.id,
-      semail: uid.email
-    });
-
+// delete method implementaion and subscribed
+  Deletedata(id: any) {
+    this.api.deletedata(id).subscribe((data) => {
+      console.log("deleted" + id);
+      this.ngOnInit();
+      // console.log(data)
+    }, (err) => {
+      console.log("error"+err)
+    })
   }
+
 }

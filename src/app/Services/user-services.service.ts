@@ -9,22 +9,31 @@ export class UserServicesService {
   constructor(private http:HttpClient) { }
 
 // post method used
-  postdata(body: any)    //https://angular-13-c34da-default-rtdb.firebaseio.com/customer.json
+  postdata(body: any)    
   {                   
-    this.http.post('https://angular-13-c34da-default-rtdb.firebaseio.com/Userdata.json',body).subscribe((data)=>{
+    this.http.post<any>('http://localhost:3000/user/',body).subscribe((data) => {
       console.log(data)
+    }, (err) => {
+      console.log(err)
     })
   }
 
   // get method used 
-  getdata() //https://jsonplaceholder.typicode.com/users  //mongodb://localhost:27017/ishop.categories
+  getdata() 
   {
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
+    return this.http.get('http://localhost:3000/user')
   }
 
   //put method used
-  updateuser(body:any)
+  updateuser(body:any ,id:any)
   {
-    return this.http.put('https://angular-13-c34da-default-rtdb.firebaseio.com/Userdata.json',body)
+    console.log("data id"+body,id);
+    return this.http.put<any>('http://localhost:3000/user/'+body,id)
+  }
+
+  deletedata(id:any)
+  {
+    console.log("data id"+id);
+    return this.http.delete<any>('http://localhost:3000/user/'+id)
   }
 }
