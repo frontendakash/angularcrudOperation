@@ -1,0 +1,66 @@
+<!--Admin Roll Modal -->
+<div class="modal fade" id="AdminRollModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h2>Registration form</h2>
+                <form class="justify-contenet-between w-100" [formGroup]="Roll" (ngSubmit)="onsubmit(Roll.value)">
+                    <div class="mt-2">
+                        <label class="form-lable">
+                            <h6>Roll Name</h6>
+                        </label>
+                        <input type="text" placeholder="Add Your Roll" class="form-control" formControlName="name">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <!-- modal close button -->
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button (click)="addRoll()" type="button" data-bs-dismiss="modal" class="btn btn-primary"
+                    id="AddButton">Add
+                    Roll</button>
+
+                <!-- upadte button -->
+                <button (click)="updatedata()" class="btn btn-primary" data-bs-dismiss="modal" style="display: none;"
+                    id="updateButton">upadte</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<table class=" table container-fluid ms-1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <!-- <th>Email</th>
+            <th>Roll Name</th> -->
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let userdata of adminRoll">
+        <tr>
+            <td>{{userdata.id}}</td>
+            <td>{{userdata.name}}</td>
+            <td><button class="btn btn-danger" (click)="Deletedata(userdata)">Delete</button>
+            </td>
+            <td>
+                <button data-bs-toggle="modal" data-bs-target="#AdminRollModal" class="btn btn-primary"
+                    (click)="editclick(userdata.id)">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

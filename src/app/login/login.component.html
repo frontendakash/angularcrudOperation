@@ -1,0 +1,18 @@
+
+
+<div class="modal-body">
+    <h2>Registration form</h2>
+
+    <form class="justify-contenet-between w-75 ms-4" [formGroup]="StudentLoginForm"
+        (ngSubmit)="onsubmit(StudentLoginForm.value)">
+        <div class="mt-2">
+            <label>Frist Name</label>
+            <input type="text" placeholder="enter your frist name" class="form-control" formControlName="username">
+        </div>
+        <div class="mt-2">
+            <label>Email</label>
+            <input type="password" placeholder="enter your last name" class="form-control" formControlName="password">
+        </div>
+    </form>
+    <button  (click)="onLoginUser()" type="submit" class="btn btn-primary mt-2" id="AddButton">Login</button>
+</div>

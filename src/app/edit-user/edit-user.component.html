@@ -1,57 +1,110 @@
-<div class="container-fluid" id="formshow">
-  <h2>Registration form</h2>
-  <form class="justify-contenet-between w-25" #myForm="ngForm" (ngSubmit)="onsubmit(myForm.value)">
-    <div class="mt-2">
-      <label>Frist Name</label>
-      <input type="text" placeholder="enter your frist name" class="form-control" name="firstn" ngModel>
-    </div>
-    <div class="mt-2">
-      <label>Last Name</label>
-      <input type="text" placeholder="enter your last name" class="form-control" name="Lastname" ngModel>
-    </div>
+<!-- nav-bar section  -->
+<nav class="navbar navbar-expand-lg bg-dark mt-2">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand text-white" href="#">User DashBoard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <div>
-      <label class="form-lable">Student Roll No</label>
-      <input type="text" placeholder="Enter your Roll number" name="sid" ngModel class="form-control">
-    </div>
+      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" routerLink="Admin DashBoard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="adminRoll">Admin DashBoard</a>
+        </li>
 
-    <div>
-      <label class="form-lable">Student Email Id</label>
-      <input type="email" placeholder="Enter your Roll number" name="semail" ngModel class="form-control">
+        <li class="nav-item">
+          <a class="nav-link disabled text-white">Disabled</a>
+        </li>
+      </ul> -->
+
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#AdminRollModal">
+        Add Admin Roll
+      </button> -->
+
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-dark ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add User
+      </button> -->
+
+      <!-- notification Button -->
+      <!-- <button type="button" class="btn position-relative ms-3" data-bs-toggle="modal"
+        data-bs-target="#NotificationModal">
+        <span class="position-absolute mt-2 top-0 translate-middle badge rounded-pill bg-danger"
+          style="margin-left: 25px;">
+          {{addNotificationData.length}}
+        </span>
+        <svg style="color: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell"
+          viewBox="0 0 16 16">
+          <path
+            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+        </svg>
+      </button> -->
     </div>
-    <!--
-    <div>
-      <label class="form-lable">Collage Name</label>
-      <input type="text" placeholder="Enter your collage name" name="cname" ngModel class="form-control">
-    </div>
-  
-    <div>
-      <label class="form-lable">Cource Name</label>
-      <input type="text" placeholder="Enter your cource name" name="sourse" class="form-control" ngModel required>
-      <div>
-        <span>Cource Name is Mandetory</span>
+  </div>
+</nav>
+
+
+<!--Notification Form Modal -->
+<div class="modal fade" id="NotificationModal" tabindex="-1" role="dialog" aria-labelledby="NotificationModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div> -->
-
-    <div>
-      <button (click)="PostData(myForm.value)" class="btn btn-primary mt-1">Login</button>
-      <button (click)="updatedata()" class="btn btn-primary ms-1 mt-1">upadte</button>
+      <div class="modal-body">
+        <h3>Student Details</h3>
+        <table class=" table container-fluid ms-1">
+          <thead>
+            <tr>
+              <!-- <th>id</th> -->
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Roll Name</th>
+              <!-- <th>Delete</th>
+              <th>Edit</th> -->
+            </tr>
+          </thead>
+          <tbody *ngFor="let userdata of addNotificationData">
+            <tr>
+              <!-- <td>{{userdata.id}}</td> -->
+              <td>{{userdata.id}}</td>
+              <td>{{userdata.username}}</td>
+              <td>{{userdata.emailId}}</td>
+              <td>{{userdata.role.name}}</td>
+              <!-- <td><button class="btn" style="background-color: red;" (click)="Deletedata(userdata.id)">Delete</button>
+              </td>
+              <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"
+                  (click)="editclick(userdata.id)">Edit</button></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
-  </form>
+  </div>
 </div>
 
 
-
-
-<!--api table showing data-->
-<h3>Student Details</h3>
+<!--User table data-->
 <table class=" table container-fluid ms-1">
   <thead>
     <tr>
       <th>id</th>
-      <th>name</th>
-      <th>username</th>
+      <th>Name</th>
       <th>Email</th>
+      <th>Roll Name</th>
       <th>Delete</th>
       <th>Edit</th>
     </tr>
@@ -59,11 +112,81 @@
   <tbody *ngFor="let userdata of user">
     <tr>
       <td>{{userdata.id}}</td>
-      <td>{{userdata.firstn}}</td>
-      <td>{{userdata.Lastname}}</td>
-      <td>{{userdata.semail}}</td>
-      <td><button class="btn" style="background-color: red;" (click)="Deletedata(userdata.id)">Delete</button></td>
-      <td><button class="btn btn-primary" (click)="editclick(userdata.id)">Edit</button></td>
+      <td>{{userdata.username}}</td>
+      <td>{{userdata.emailId}}</td>
+      <td>{{userdata.role.name}}</td>
+      <td><button class="btn" style="background-color: red;" (click)="DeleteUser(userdata)">Delete</button></td>
+      <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"
+          (click)="editclick(userdata.id)">Edit</button></td>
     </tr>
   </tbody>
 </table>
+
+
+<!-- user Form Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <h2>Registration form</h2>
+        <form class="justify-contenet-between w-100" [formGroup]="StudentLoginForm"
+          (ngSubmit)="onsubmit(StudentLoginForm.value)">
+          <div class="mt-2">
+            <label class="form-lable">
+              <h6>Username</h6>
+            </label>
+            <input type="text" placeholder="enter Username" class="form-control" formControlName="username">
+          </div>
+          <div class="mt-2" id="passwordfield" style="display: block;">
+            <label class="form-lable">
+              <h6>Password</h6>
+            </label>
+            <input type="text" placeholder="enter your Password" class="form-control" formControlName="password">
+          </div>
+
+          <div>
+            <label class="form-lable">
+              <h6>Email Id</h6>
+            </label>
+            <input type="text" placeholder="Enter your Email Id" formControlName="emailId" class="form-control">
+          </div>
+
+          <div>
+            <h6 class="mt-2">select Your Roll</h6>
+            <div>
+              <select formControlName="roleId" class="form-select" aria-label="Default select example">
+                <option *ngFor="let roll of adminRoll" value={{roll.id}}>{{roll.name}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <!-- modal close button -->
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+        <!-- post data button -->
+        <button (click)="PostData()" type="button" data-bs-dismiss="modal" class="btn btn-primary"
+          id="AddButton">Add</button>
+
+        <!-- upadte form data button -->
+        <button (click)="updatedata()" class="btn btn-primary" data-bs-dismiss="modal" style="display: none;"
+          id="updateButton">upadte</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
